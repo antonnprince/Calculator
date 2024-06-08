@@ -1,0 +1,54 @@
+.container {
+    width: 300px;
+    margin: auto;
+    justify-content: center;
+    margin-top: 6%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5%;
+    padding: 2%;
+  }
+.body h1{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
+}
+.body{
+    background-color: rgb(119, 150, 200);
+}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+  .padButton {
+    padding: 20px;
+    font-weight: 700;
+    color: azure;
+    background-color: rgb(180, 10, 10);
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20%;
+  }
+
+.container input {
+    color: black;
+    font-weight: 600;
+    background-color: rgb(142, 183, 45);
+    border: none;
+    border-radius: 10%;
+    margin-right: auto;
+}
+
+  .dis {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 7px;
+    background-color: rgb(142, 183, 45);
+    font-weight: 700;
+  }
+  .total {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
