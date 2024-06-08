@@ -9,7 +9,7 @@
     <div class="container">
         <div class="grid">
           <div class="dis">
-            <input type="text" id="exp" placeholder="0" disabled />
+            <div class="total" id="exp">0</div> 
             <div class="total" id="ans">0</div> 
           </div>
          
@@ -43,8 +43,9 @@
     const finalAns = document.getElementById('ans')
 
     const display = (symbol) => {
+     
       exp += symbol;     
-      expInput.value = exp;
+      expInput.textContent = exp;
     }
     
    
@@ -64,14 +65,14 @@
 
     const clear = () => {
       exp = exp.slice(0, -1);
-      expInput.value = exp;
+      expInput.textContent = exp;
       finalAns.textContent = "0";
     }
 
     const allClear = () => {
       exp = "";
       ans = 0;
-      expInput.value = "";
+      expInput.textContent = "0";
       finalAns.textContent = "0";
     }
 
