@@ -53,9 +53,7 @@
         
         if (exp.includes('//') || exp.includes('**')) {
             finalAns.textContent = "Error";
-            // console.log('found')
         } else {
-            console.log(exp)
             ans = eval(exp);
             finalAns.textContent = ans;
         }
