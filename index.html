@@ -11,7 +11,7 @@
     <div class="container">
         <div class="grid">
             <div class="dis">
-                <div class="total" id="ans">0</div>
+                <div class="total" id="ans"></div>
             </div>
             <div class="padButton redness AC">AC</div>
             <div class="padButton redness C">C</div>
@@ -34,36 +34,45 @@
         </div>
     </div>
 
-    <script>
-        let ans = ""
-        let allowDecimal=true
+<script>
+let ans = ""
+let allowDecimal=true
 
-        const finalAns = document.getElementById('ans')
+const finalAns = document.getElementById('ans')
 
-       const display = (symbol) => {
-  // Check for single leading zero replacement
-      if (ans[0] === "0" && ans.length === 1) {
-        ans = symbol;
-        return; // Early exit after replacement
-      }
-
-        // Handle decimal point and operator logic
-        if (symbol === ".") {
-          if (!allowDecimal) return; // Early exit if decimal not allowed
-        allowDecimal = false;
-        } 
-        else if (isOperator(symbol)) {
-          allowDecimal = true; // Reset decimal allowance for operators
-        }
-        // Append symbol if allowed
-        ans += symbol;
-        // Check for various errors and display "Error" if found
-        if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//')) {
-          finalAns.textContent = "Error";
-        } else {
-          finalAns.textContent = ans;
-        }
-      };
+const display=(symbol)=>
+{
+  // if (ans[0]==="0" && ans.length===1)
+  // {
+  //   ans = symbol;
+  //   finalAns.textContent=ans
+  //   return; 
+  // } 
+  
+  if (symbol===".") 
+  {
+    console.log("Before:",allowDecimal)
+    if (!allowDecimal) return; 
+    allowDecimal = false;
+    console.log("After:",allowDecimal)
+  } 
+  else if (isOperator(symbol))
+  {
+      allowDecimal = true; 
+  }
+    
+  ans += symbol;
+  console.log(ans)
+  
+  if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//'))
+  {
+    finalAns.textContent = "Error";
+  } 
+  else 
+  {
+    finalAns.textContent = ans;
+  }
+};
 
 // Helper function to check if symbol is an operator
 function isOperator(symbol) {
@@ -71,65 +80,67 @@ function isOperator(symbol) {
 }
 
 
-        const calculate = () => {
-            try {        
-                    ans = eval(ans).toString();
-                    finalAns.textContent = ans;
-                }
-                 catch (error)
-                {
-                  finalAns.textContent = "Error";
-                }
+const calculate = () => {
+try {        
+        ans = eval(ans).toString();
+        finalAns.textContent = ans;
+    }
+    catch (error)
+    {
+      finalAns.textContent = "Error";
+    }
+}
+
+const clear=()=> {
+
+  // if (ans==='0') 
+  //   {
+  //     ans='0';
+  //   } 
+  // else 
+  {
+    ans = ans.slice(0, -1);
+    finalAns.textContent = ans;
+        if(ans.includes(".."))
+        {
+          finalAns.textContent="Error"
         }
 
-        const clear=()=> {
-            if (ans==='0') 
-              {
-                ans='0';
-                finalAns.textContent='0'
-                allowDecimal=true
-              } 
-              else {
-                ans = ans.slice(0, -1);
-                finalAns.textContent = ans;
+  }
+    
+  // if (ans==="") 
+  //       {
+  //         finalAns.textContent = "0";
+  //       }
 
-                  if(ans.includes(".."))
-                  {
-                    finalAns.textContent="Error"
-                  }
-                
-                  if (ans === "") 
-                  {
-                    ans = "0";
-                  }
-            }
-            
-        }
+}
 
-        const allClear = () => {
-            ans = "";
-            finalAns.textContent = "0";
-            allowDecimal=true
-        }
+const allClear=()=>
+{
+    ans="";
+    finalAns.textContent = "";
+    allowDecimal=true
+}
 
-        document.querySelector(".AC").addEventListener("click", allClear);
-        document.querySelector(".C").addEventListener("click", clear);
-        document.querySelector(".div").addEventListener("click", () => display("/"));
-        document.querySelector(".times").addEventListener("click", () => display("*"));
-        document.querySelector(".seven").addEventListener("click", () => display("7"));
-        document.querySelector(".eight").addEventListener("click", () => display("8"));
-        document.querySelector(".nine").addEventListener("click", () => display("9"));
-        document.querySelector(".minus").addEventListener("click", () => display("-"));
-        document.querySelector(".four").addEventListener("click", () => display("4"));
-        document.querySelector(".five").addEventListener("click", () => display("5"));
-        document.querySelector(".six").addEventListener("click", () => display("6"));
-        document.querySelector(".plus").addEventListener("click", () => display("+"));
-        document.querySelector(".one").addEventListener("click", () => display("1"));
-        document.querySelector(".two").addEventListener("click", () => display("2"));
-        document.querySelector(".three").addEventListener("click", () => display("3"));
-        document.querySelector(".equal").addEventListener("click", calculate);
-        document.querySelector(".zero").addEventListener("click", () => display("0"));
-        document.querySelector(".point").addEventListener("click", () => display("."));
-    </script>
+document.querySelector(".AC").addEventListener("click", allClear);
+document.querySelector(".C").addEventListener("click", clear);
+document.querySelector(".div").addEventListener("click", () => display("/"));
+document.querySelector(".times").addEventListener("click", () => display("*"));
+document.querySelector(".seven").addEventListener("click", () => display("7"));
+document.querySelector(".eight").addEventListener("click", () => display("8"));
+document.querySelector(".nine").addEventListener("click", () => display("9"));
+document.querySelector(".minus").addEventListener("click", () => display("-"));
+document.querySelector(".four").addEventListener("click", () => display("4"));
+document.querySelector(".five").addEventListener("click", () => display("5"));
+document.querySelector(".six").addEventListener("click", () => display("6"));
+document.querySelector(".plus").addEventListener("click", () => display("+"));
+document.querySelector(".one").addEventListener("click", () => display("1"));
+document.querySelector(".two").addEventListener("click", () => display("2"));
+document.querySelector(".three").addEventListener("click", () => display("3"));
+document.querySelector(".equal").addEventListener("click", calculate);
+document.querySelector(".zero").addEventListener("click", () => display("0"));
+document.querySelector(".point").addEventListener("click", () => display("."));
+</script>
+
 </body>
 </html>
