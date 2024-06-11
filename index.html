@@ -1,98 +1,141 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-
 <body class="body">
     <h1>Calculator App with Javascript</h1>
     <div class="container">
         <div class="grid">
-          <div class="dis">
-            <div class="total" id="exp">0</div> 
-            <div class="total" id="ans">0</div> 
-          </div>
-         
-          <div class="padButton redness AC">AC</div>
-          <div class="padButton redness C">C</div>
-          <div class="padButton div">/</div>
-          <div class="padButton times">x</div>
-          <div class="padButton seven">7</div>
-          <div class="padButton eight">8</div>
-          <div class="padButton nine">9</div>
-          <div class="padButton minus">-</div>
-          <div class="padButton four">4</div>
-          <div class="padButton five">5</div>
-          <div class="padButton six">6</div>
-          <div class="padButton plus">+</div>
-          <div class="padButton one">1</div>
-          <div class="padButton two">2</div>
-          <div class="padButton three">3</div>
-          <div class="padButton equal">=</div>
-          <div class="padButton zero">0</div>
-          <div class="padButton point">.</div>
+            <div class="dis">
+                <div class="total" id="ans">0</div>
+            </div>
+            <div class="padButton redness AC">AC</div>
+            <div class="padButton redness C">C</div>
+            <div class="padButton div">/</div>
+            <div class="padButton times">x</div>
+            <div class="padButton seven">7</div>
+            <div class="padButton eight">8</div>
+            <div class="padButton nine">9</div>
+            <div class="padButton minus">-</div>
+            <div class="padButton four">4</div>
+            <div class="padButton five">5</div>
+            <div class="padButton six">6</div>
+            <div class="padButton plus">+</div>
+            <div class="padButton one">1</div>
+            <div class="padButton two">2</div>
+            <div class="padButton three">3</div>
+            <div class="padButton equal">=</div>
+            <div class="padButton zero">0</div>
+            <div class="padButton point">.</div>
         </div>
-      </div>
-</body>
+    </div>
 
-<script>
-    let exp=""
-    let ans=""
+    <script>
+        let ans = ""
+        let allowDecimal=true
 
-    const expInput = document.getElementById('exp')
-    const finalAns = document.getElementById('ans')
+        const finalAns = document.getElementById('ans')
 
-    const display = (symbol) => {
-     
-      exp += symbol;     
-      expInput.textContent = exp;
-    }
-    
-   
-    const calculate = () => {
-      try {
+        const display = (symbol) => 
+        {
+           // if(symbol===".")
+          // {
+          //   if(allowDecimal===false)
+          //   return
+          //     else
+          //     {
+          //       ans+=symbol
+          //       allowDecimal=false
+          //     }
+          // }
+
+          if(symbol==="+"|| symbol==="-"||symbol==="*"||symbol==="/")
+          allowDecimal===true
         
-        if (exp.includes('//') || exp.includes('**')) {
+          if (ans[0] === "0" && ans.length === 1)
+          {
+            ans = symbol;
+          } 
+          else 
+          {
+            ans += symbol;
+            // allowDecimal=false
+          }
+          
+         
+
+          if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//')) 
+          {
             finalAns.textContent = "Error";
-        } else {
-            ans = eval(exp);
+          } 
+          else 
+          {
             finalAns.textContent = ans;
+          }
+
+
+        };
+
+        const calculate = () => {
+            try {        
+                    ans = eval(ans).toString();
+                    finalAns.textContent = ans;
+                }
+                 catch (error)
+                {
+                  finalAns.textContent = "Error";
+                }
         }
-      } catch (error) {
-        finalAns.textContent = "Error";
-      }
-    }
 
-    const clear = () => {
-      exp = exp.slice(0, -1);
-      expInput.textContent = exp;
-      finalAns.textContent = "0";
-    }
+        const clear=()=> {
+            if (ans==='0') 
+              {
+                ans='0';
+              } 
+              else {
+                ans = ans.slice(0, -1);
+                finalAns.textContent = ans;
 
-    const allClear = () => {
-      exp = "";
-      ans = 0;
-      expInput.textContent = "0";
-      finalAns.textContent = "0";
-    }
+                  if(ans.includes(".."))
+                  {
+                    finalAns.textContent="Error"
+                  }
+                
+                  if (ans === "") 
+                  {
+                    ans = "0";
+                  }
+            }
+            
+        }
 
-    document.querySelector(".AC").addEventListener("click", allClear);
-    document.querySelector(".C").addEventListener("click", clear);
-    document.querySelector(".div").addEventListener("click", () => display("/"));
-    document.querySelector(".times").addEventListener("click", () => display("*"));
-    document.querySelector(".seven").addEventListener("click", () => display("7"));
-    document.querySelector(".eight").addEventListener("click", () => display("8"));
-    document.querySelector(".nine").addEventListener("click", () => display("9"));
-    document.querySelector(".minus").addEventListener("click", () => display("-"));
-    document.querySelector(".four").addEventListener("click", () => display("4"));
-    document.querySelector(".five").addEventListener("click", () => display("5"));
-    document.querySelector(".six").addEventListener("click", () => display("6"));
-    document.querySelector(".plus").addEventListener("click", () => display("+"));
-    document.querySelector(".one").addEventListener("click", () => display("1"));
-    document.querySelector(".two").addEventListener("click", () => display("2"));
-    document.querySelector(".three").addEventListener("click", () => display("3"));
-    document.querySelector(".equal").addEventListener("click", calculate);
-    document.querySelector(".zero").addEventListener("click", () => display("0"));
-    document.querySelector(".point").addEventListener("click", () => display("."));
-  </script>
+        const allClear = () => {
+            ans = "";
+            finalAns.textContent = "0";
+        }
+
+        document.querySelector(".AC").addEventListener("click", allClear);
+        document.querySelector(".C").addEventListener("click", clear);
+        document.querySelector(".div").addEventListener("click", () => display("/"));
+        document.querySelector(".times").addEventListener("click", () => display("*"));
+        document.querySelector(".seven").addEventListener("click", () => display("7"));
+        document.querySelector(".eight").addEventListener("click", () => display("8"));
+        document.querySelector(".nine").addEventListener("click", () => display("9"));
+        document.querySelector(".minus").addEventListener("click", () => display("-"));
+        document.querySelector(".four").addEventListener("click", () => display("4"));
+        document.querySelector(".five").addEventListener("click", () => display("5"));
+        document.querySelector(".six").addEventListener("click", () => display("6"));
+        document.querySelector(".plus").addEventListener("click", () => display("+"));
+        document.querySelector(".one").addEventListener("click", () => display("1"));
+        document.querySelector(".two").addEventListener("click", () => display("2"));
+        document.querySelector(".three").addEventListener("click", () => display("3"));
+        document.querySelector(".equal").addEventListener("click", calculate);
+        document.querySelector(".zero").addEventListener("click", () => display("0"));
+        document.querySelector(".point").addEventListener("click", () => display("."));
+    </script>
+</body>
 </html>
