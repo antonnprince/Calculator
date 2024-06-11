@@ -16,11 +16,7 @@
     background-color: rgb(119, 150, 200);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
-  }
+  
   .padButton {
     padding: 20px;
     font-weight: 700;
@@ -29,6 +25,11 @@
     text-align: center;
     cursor: pointer;
     border-radius: 20%;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
   }
 
   .dis {
@@ -39,11 +40,13 @@
     padding: 7px;
     background-color: rgb(142, 183, 45);
     font-weight: 700;
-  }
+}
 
-  .total {
+.total {
     font-size: 1.5em;
-    margin-top: 5 px;
+    margin-top: 5px; /* Corrected typo */
+    width: 100%; /* Adjusted width */
     margin-right: auto;
-    height: 40px;
-  }
+    height: 80px;
+    overflow-wrap: break-word; /* Allows text to wrap */
+}

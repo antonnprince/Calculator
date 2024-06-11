@@ -10,9 +10,11 @@
     <h1>Calculator App with Javascript</h1>
     <div class="container">
         <div class="grid">
+
             <div class="dis">
                 <div class="total" id="ans"></div>
             </div>
+          
             <div class="padButton redness AC">AC</div>
             <div class="padButton redness C">C</div>
             <div class="padButton div">/</div>
@@ -36,45 +38,41 @@
 
 <script>
 let ans = ""
+const maxLength=35
 let allowDecimal=true
 
 const finalAns = document.getElementById('ans')
 
-const display=(symbol)=>
-{
-  // if (ans[0]==="0" && ans.length===1)
-  // {
-  //   ans = symbol;
-  //   finalAns.textContent=ans
-  //   return; 
-  // } 
+const display=(symbol) => {
+  const len = ans.length;
   
-  if (symbol===".") 
+  if(maxLength<len)
+  return
+
+
+  if (symbol === "." || isOperator(symbol)) 
   {
-    console.log("Before:",allowDecimal)
-    if (!allowDecimal) return; 
-    allowDecimal = false;
-    console.log("After:",allowDecimal)
-  } 
-  else if (isOperator(symbol))
-  {
-      allowDecimal = true; 
+    if (symbol===ans[len - 1])
+    { 
+      return; // Early exit if symbol is same as last character
+    }
+    else if(symbol===".")
+    {
+      console.log("Before:",allowDecimal)
+      if (allowDecimal===false) return
+      allowDecimal = false;
+      console.log("After:",allowDecimal)
+    }
+      else if (isOperator(symbol))
+    {
+        allowDecimal = true; 
+    }
   }
-    
-  ans += symbol;
-  console.log(ans)
-  
-  if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//'))
-  {
-    finalAns.textContent = "Error";
-  } 
-  else 
-  {
-    finalAns.textContent = ans;
-  }
+   ans += symbol;
+   console.log(ans);
+   finalAns.textContent=ans
 };
 
-// Helper function to check if symbol is an operator
 function isOperator(symbol) {
   return symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/";
 }
@@ -91,29 +89,16 @@ try {
     }
 }
 
-const clear=()=> {
-
-  // if (ans==='0') 
-  //   {
-  //     ans='0';
-  //   } 
-  // else 
-  {
+const clear = () => {
+    let len = ans.length; 
+    if (ans[len - 2] === ".")
+    {
+        allowDecimal = true;
+    }
     ans = ans.slice(0, -1);
     finalAns.textContent = ans;
-        if(ans.includes(".."))
-        {
-          finalAns.textContent="Error"
-        }
-
-  }
     
-  // if (ans==="") 
-  //       {
-  //         finalAns.textContent = "0";
-  //       }
-
-}
+};
 
 const allClear=()=>
 {
