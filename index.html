@@ -58,12 +58,14 @@ const display=(symbol) => {
     }
     else if(symbol===".")
     {
-      console.log("Before:",allowDecimal)
-      if (allowDecimal===false) return
+      // console.log("Before:",allowDecimal)
+      if (allowDecimal===false) 
+      return
+      
       allowDecimal = false;
-      console.log("After:",allowDecimal)
+      // console.log("After:",allowDecimal)
     }
-      else if (isOperator(symbol))
+    else if (isOperator(symbol))
     {
         allowDecimal = true; 
     }

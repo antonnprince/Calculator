@@ -44,9 +44,10 @@
 
 .total {
     font-size: 1.5em;
-    margin-top: 5px; /* Corrected typo */
+    /* margin-top: 5px; Corrected typo */
     width: 100%; /* Adjusted width */
+    height: fit-content;
     margin-right: auto;
-    height: 80px;
+    height: 100px;
     overflow-wrap: break-word; /* Allows text to wrap */
 }
