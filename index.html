@@ -40,45 +40,36 @@
 
         const finalAns = document.getElementById('ans')
 
-        const display = (symbol) => 
-        {
-           // if(symbol===".")
-          // {
-          //   if(allowDecimal===false)
-          //   return
-          //     else
-          //     {
-          //       ans+=symbol
-          //       allowDecimal=false
-          //     }
-          // }
+       const display = (symbol) => {
+  // Check for single leading zero replacement
+      if (ans[0] === "0" && ans.length === 1) {
+        ans = symbol;
+        return; // Early exit after replacement
+      }
 
-          if(symbol==="+"|| symbol==="-"||symbol==="*"||symbol==="/")
-          allowDecimal===true
-        
-          if (ans[0] === "0" && ans.length === 1)
-          {
-            ans = symbol;
-          } 
-          else 
-          {
-            ans += symbol;
-            // allowDecimal=false
-          }
-          
-         
+        // Handle decimal point and operator logic
+        if (symbol === ".") {
+          if (!allowDecimal) return; // Early exit if decimal not allowed
+        allowDecimal = false;
+        } 
+        else if (isOperator(symbol)) {
+          allowDecimal = true; // Reset decimal allowance for operators
+        }
+        // Append symbol if allowed
+        ans += symbol;
+        // Check for various errors and display "Error" if found
+        if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//')) {
+          finalAns.textContent = "Error";
+        } else {
+          finalAns.textContent = ans;
+        }
+      };
 
-          if (ans.includes("..") || ans.includes('++') || ans.includes('--') || ans.includes('**') || ans.includes('//')) 
-          {
-            finalAns.textContent = "Error";
-          } 
-          else 
-          {
-            finalAns.textContent = ans;
-          }
+// Helper function to check if symbol is an operator
+function isOperator(symbol) {
+  return symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/";
+}
 
-
-        };
 
         const calculate = () => {
             try {        
@@ -95,6 +86,8 @@
             if (ans==='0') 
               {
                 ans='0';
+                finalAns.textContent='0'
+                allowDecimal=true
               } 
               else {
                 ans = ans.slice(0, -1);
@@ -116,6 +109,7 @@
         const allClear = () => {
             ans = "";
             finalAns.textContent = "0";
+            allowDecimal=true
         }
 
         document.querySelector(".AC").addEventListener("click", allClear);
