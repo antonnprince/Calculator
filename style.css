@@ -7,30 +7,55 @@
     border-radius: 5%;
     padding: 2%;
   }
+
 .body h1{
     text-align: center;
-   
     font-weight: 700;
 }
+
+
 .body{
-    background-color: rgb(119, 150, 200);
+    background-color: rgb(147, 182, 238);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
   
-  .padButton {
-    padding: 20px;
-    font-weight: 700;
+.padButton {
+    padding: 10px;
+    font-weight: 900;
+    font-size: 25px;
     color: azure;
-    background-color: rgb(227, 50, 50);
+    background-color: rgb(126, 113, 113);
     text-align: center;
     cursor: pointer;
-    border-radius: 20%;
+    border-radius: 10%;
   }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
+    gap: 5px;
   }
+
+  .padButton.redness.AC {
+    grid-column: span 2;
+    padding-right: 10%;
+    border-radius: 5%;
+    background-color: rgb(38, 171, 46);
+  }
+
+  .padButton.redness.C {
+    grid-column: span 2;
+    padding-right: 10%;
+    border-radius: 5%;
+    background-color: rgb(205, 48, 48);
+  }
+
+  
+  .padButton.redness.C {
+    grid-column: span 2;
+    padding-right: 10%;
+  }
+
 
   .dis {
     grid-column: span 4;
@@ -38,16 +63,16 @@
     flex-direction: column;
     align-items: flex-end;
     padding: 7px;
-    background-color: rgb(142, 183, 45);
+    background-color: rgb(27, 104, 21);
     font-weight: 700;
 }
 
 .total {
-    font-size: 1.5em;
-    /* margin-top: 5px; Corrected typo */
-    width: 100%; /* Adjusted width */
-    height: fit-content;
-    margin-right: auto;
-    height: 100px;
-    overflow-wrap: break-word; /* Allows text to wrap */
+  font-size: 1.5em;
+  width: 100%; /* Ensures the total div takes full width */
+  margin-right: auto;
+  min-height: 80px; /* Ensures a minimum height */
+  height: auto; /* Allows height to increase with content */
+  overflow-wrap: break-word; /* Allows text to wrap */
+  word-break: break-word; /* Ensures long words are broken */
 }
