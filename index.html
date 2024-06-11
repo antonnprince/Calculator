@@ -100,15 +100,13 @@ const clear = () => {
         allowDecimal = true;
     } 
 
-    if(isOperator(ans[len-1]))
-    {
-      const res = ans.split(/ [\+\-\*\/] /)
-      let l = res.length
-      // string indices are from 0, so to access elements of string, its 0 to l-1
-      // last element of res array will be empty(we cleared it) so we access "l-2"th element
-      if(res[l-2].includes("."))
-        allowDecimal=false
-      console.log(res)
+    if (isOperator(ans[len - 1])) {
+    const res = ans.split(/[\+\-\*\/]/); // Split by operators without spaces
+    let l = res.length;
+    if (l > 1 && res[l - 2].includes(".")) {
+      allowDecimal = false;
+    }
+    console.log(res);
     }
 
     console.log(ans)
