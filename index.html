@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
     <title>Calculator</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
     
@@ -16,6 +15,7 @@
             <div class="dis">
                 <div class="total" id="ans"></div>
             </div>
+          
           
             <div class="padButton redness AC">AC</div>
             <div class="padButton redness C">C</div>
@@ -35,7 +35,8 @@
             <div class="padButton point">.</div>
             <div class="padButton equal">=</div>
             <div class="padButton plus">+</div>
-        </div>
+          </div>
+        
     </div>
 
 <script>
@@ -52,7 +53,7 @@ const display=(symbol) => {
   return
 
 
-  if (symbol === "." || isOperator(symbol)) 
+  if(symbol==="."||isOperator(symbol)) 
   {
     if (symbol===ans[len - 1])
     { 
@@ -70,7 +71,7 @@ const display=(symbol) => {
     }
   }
    ans += symbol;
-   console.log(ans);
+  //  console.log(ans);
    finalAns.textContent=ans
 };
 
@@ -92,10 +93,25 @@ try {
 
 const clear = () => {
     let len = ans.length; 
-    if (ans[len - 2] === ".")
+    console.log(ans[len-1])
+    
+    if (ans[len - 1]===".")
     {
         allowDecimal = true;
+    } 
+
+    if(isOperator(ans[len-1]))
+    {
+      const res = ans.split(/ [\+\-\*\/] /)
+      let l = res.length
+      // string indices are from 0, so to access elements of string, its 0 to l-1
+      // last element of res array will be empty(we cleared it) so we access "l-2"th element
+      if(res[l-2].includes("."))
+        allowDecimal=false
+      console.log(res)
     }
+
+    console.log(ans)
     ans = ans.slice(0, -1);
     finalAns.textContent = ans;
     
