@@ -1,20 +1,44 @@
-@media only screen and (max-width:768px)
+/* Default styles */
+.container {
+  width: 20%;
+  margin: auto;
+  justify-content: center;
+  margin-top: 6%;
+  background-color: #1b1b1b;
+  border-radius: 5%;
+  padding: 2%;
+}
+
+@media only screen and (max-width:1024px)
 {
-  body {
-    background-color: red;
+  .container{
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* More specific selector */
+  .container {
+      width: 40% ; /* Using !important to override other styles */
+  }
+
+}
+@media only screen and (max-width:425px)
+{
+  .container{
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width:375px) {
+  .container{
+    width:fit-content;
   }
 }
 
 
-.container {
-    width: 300px;
-    margin: auto;
-    justify-content: center;
-    margin-top: 6%;
-    background-color: #333;
-    border-radius: 5%;
-    padding: 2%;
-  }
+
+
 
 .body h1{
     text-align: center;
@@ -49,7 +73,7 @@
 
 .AC {
 grid-column: span 2;
-padding-right: 10%;
+padding-right: 20px;
 border-radius: 5%;
 background-color: rgb(28, 122, 35);
 }
