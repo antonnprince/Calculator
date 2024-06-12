@@ -49,27 +49,34 @@ const finalAns = document.getElementById('ans')
 const display=(symbol) => {
   const len = ans.length;
   
+//stops taking input in calculator if exceeds maximum length, returns from display function
   if(maxLength<len)
   return
 
 
+//our special cases are when "." or an operator symbol appears, as we dont want them to repeat consecutively
+//also we dont need to have more than one "." in the same number
   if(symbol==="."||isOperator(symbol)) 
   {
     if (symbol===ans[len - 1])
     { 
-      return; 
+      return;
+      //exit function if the current input is same as the last element of ans 
     }
     else if(symbol===".")
     {
       if (allowDecimal===false) 
-      return
+      return//exit function if symbol is decimal point 
       allowDecimal = false;
+      //set it to false here, and will be later on added to ans string
     }
     else if (isOperator(symbol))
     {
+      //as when we use operator, a new number is formed on RHS hence need to allow to add decimal point 
         allowDecimal = true; 
     }
   }
+  //add the symbol
    ans += symbol;
   //  console.log(ans);
    finalAns.textContent=ans
@@ -95,15 +102,19 @@ const clear = () => {
     let len = ans.length; 
     console.log(ans[len-1])
     
+    //meed to check if last erased element is a ".", if 
     if (ans[len - 1]===".")
     {
         allowDecimal = true;
     } 
 
-    if (isOperator(ans[len - 1])) {
+      //if last element erased is an operator, need to check if previous number has a decimal point in it or not
+    if (isOperator(ans[len - 1]))
+    {
     const res = ans.split(/[\+\-\*\/]/); // Split by operators without spaces
     let l = res.length;
-    if (l > 1 && res[l - 2].includes(".")) {
+    if (l > 1 && res[l - 2].includes(".")) 
+    {
       allowDecimal = false;
     }
     console.log(res);
